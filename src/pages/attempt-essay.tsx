@@ -78,7 +78,7 @@ export function AttemptEssay() {
     const createdAttempt = await createAttempt(newAttempt)
     
     if (createdAttempt) {
-        navigate(`/attempt/${createdAttempt.id}`)
+        navigate(`/ielts-writing-app/attempt/${createdAttempt.id}`)
     }
   }
 

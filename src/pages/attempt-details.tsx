@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/collapsible";
 import { ChevronsUpDown } from "lucide-react";
 import { getAttemptById } from "@/lib/db/attempts";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Mistake, WritingAttempt } from "@/lib/types";
 import { AddCorrection } from "@/components/add-correction";
 import { formatString } from "@/lib/utils";
@@ -32,17 +32,6 @@ export function AttemptDetails() {
         null
     );
     const [popoverOpen, setPopoverOpen] = useState(false);
-
-    // Create a map of highlighted text to mistakes
-    const mistakeMap = useMemo(() => {
-        const map = new Map<string, Mistake>();
-        attempt?.mistakes?.forEach((mistake) => {
-            if (mistake.highlightedText) {
-                map.set(mistake.highlightedText, mistake);
-            }
-        });
-        return map;
-    }, [attempt?.mistakes]);
 
     useEffect(() => {
         const loadAttempt = async () => {
@@ -86,7 +75,6 @@ export function AttemptDetails() {
     const highlightMistakes = (text: string, mistakes: Mistake[]) => {
         if (!mistakes.some((m) => m.highlightedText)) return text;
 
-        let highlightedText = text;
         const parts = [];
         let lastIndex = 0;
 
@@ -262,15 +250,15 @@ export function AttemptDetails() {
                                             variant="outline"
                                             className={cn(
                                                 "font-medium capitalize",
-                                                mistake.type === "grammar" &&
-                                                    "bg-amber-100 text-amber-800 border-amber-300",
-                                                mistake.type === "vocabulary" &&
-                                                    "bg-blue-100 text-blue-800 border-blue-300",
-                                                mistake.type === "coherence" &&
-                                                    "bg-purple-100 text-purple-800 border-purple-300",
+                                                mistake.type === "grammar" ?
+                                                    "bg-amber-100 text-amber-800 border-amber-300" : "",
+                                                mistake.type === "vocabulary" ?
+                                                    "bg-blue-100 text-blue-800 border-blue-300" : "",
+                                                mistake.type === "coherence" ?
+                                                    "bg-purple-100 text-purple-800 border-purple-300" : "",
                                                 mistake.type ===
-                                                    "task-achievement" &&
-                                                    "bg-green-100 text-green-800 border-green-300"
+                                                    "task-achievement" ?
+                                                    "bg-green-100 text-green-800 border-green-300": ""
                                             )}
                                         >
                                             {mistake.type.replace("-", " ")}

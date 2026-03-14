@@ -25,13 +25,13 @@ export function Home() {
         <div className="space-y-6">
 			<div className="flex gap-4">
             <Button
-                onClick={() => navigate("/attempt-essay/task1")}
+                onClick={() => navigate("/ielts-writing-app/attempt-essay/task1")}
                 className="w-full sm:w-auto"
             >
                 Practice Task 1
             </Button>
             <Button
-                onClick={() => navigate("/attempt-essay/task2")}
+                onClick={() => navigate("/ielts-writing-app/attempt-essay/task2")}
                 className="w-full sm:w-auto"
                 variant="secondary"
             >
@@ -49,7 +49,7 @@ export function Home() {
                         {task1Attempts.length > 0 ? (
                             task1Attempts.map((attempt) => (
                                 <Link
-                                    to={`/attempt/${attempt.id}`}
+                                    to={`/ielts-writing-app/attempt/${attempt.id}`}
                                     key={attempt.id}
                                 >
                                     <AttemptCard attempt={attempt} />
@@ -68,7 +68,7 @@ export function Home() {
                         {task2Attempts.length > 0 ? (
                             task2Attempts.map((attempt) => (
                                 <Link
-                                    to={`/attempt/${attempt.id}`}
+                                    to={`/ielts-writing-app/attempt/${attempt.id}`}
                                     key={attempt.id}
                                 >
                                     <AttemptCard attempt={attempt} />

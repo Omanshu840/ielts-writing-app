@@ -6,15 +6,17 @@ import {Home} from '@/pages/home'
 import {AttemptDetails} from '@/pages/attempt-details'
 import './index.css'
 import { AttemptEssay } from '@/pages/attempt-essay'
+import { Band9Essays } from '@/pages/band9-essays'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      { index: true, element: <Home /> },
-      { path: 'attempt/:attemptId', element: <AttemptDetails /> },
-      { path: 'attempt-essay/:taskType', element: <AttemptEssay /> },
+      { path: '/ielts-writing-app', element: <Home /> },
+      { path: '/ielts-writing-app/attempt/:attemptId', element: <AttemptDetails /> },
+      { path: '/ielts-writing-app/attempt-essay/:taskType', element: <AttemptEssay /> },
+      { path: '/ielts-writing-app/band9-essays', element: <Band9Essays /> },
     ],
   },
 ])
